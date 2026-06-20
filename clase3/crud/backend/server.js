@@ -63,19 +63,18 @@ let courses = [
 
 // --- ENDPOINTS DE LA API REST (CRUD) ---
 
-// 1. OBTENER TODOS LOS CURSOS (Read)
+
 app.get('/api/courses', (req, res) => {
   res.status(200).json(courses);
 });
 
-// 2. OBTENER UN CURSO POR ID (Read Individual)
+
 app.get('/api/courses/:id', (req, res) => {
   const course = courses.find(c => c.id === req.params.id);
   if (!course) return res.status(404).json({ message: "Curso no encontrado" });
   res.status(200).json(course);
 });
 
-// 3. CREAR UN NUEVO CURSO (Create)
 app.post('/api/courses', (req, res) => {
   const { title, description, instructor, imageName, duration, level, syllabus } = req.body;
   
@@ -99,7 +98,7 @@ app.post('/api/courses', (req, res) => {
   res.status(201).json(newCourse);
 });
 
-// 4. ACTUALIZAR UN CURSO EXISTENTE (Update)
+
 app.put('/api/courses/:id', (req, res) => {
   const index = courses.findIndex(c => c.id === req.params.id);
   if (index === -1) return res.status(404).json({ message: "Curso no encontrado" });
@@ -116,7 +115,7 @@ app.put('/api/courses/:id', (req, res) => {
   res.status(200).json(courses[index]);
 });
 
-// 5. ELIMINAR UN CURSO (Delete)
+
 app.delete('/api/courses/:id', (req, res) => {
   const index = courses.findIndex(c => c.id === req.params.id);
   if (index === -1) return res.status(404).json({ message: "Curso no encontrado" });
